@@ -4,29 +4,62 @@ import (
 	"awesomeProject/mode"
 	"encoding/json"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
+	"time"
 )
 
 func main() {
 
-	var keywords = []string{
-		"麦饭石乌龟锅",
-		"做豆腐的卤水 家用",
-		"烤火炉子烧柴 室内",
-	}
+
+	r := gin.Default()
 
 
-	for _, keyword := range keywords {
-		analysis(keyword)
-	}
+	r.GET("/get", func(c *gin.Context) {
+
+		keywords := c.Query("keywords")
+		sleepSecond := c.Query("sleepSecond")
+
+		splits := strings.Split(keywords, ",")
+
+		log.Println(splits, sleepSecond)
+
+		parseInt, _ := strconv.Atoi(sleepSecond)
+
+		var result []string
+
+		for _, keyword := range splits {
+			s := analysis(keyword)
+			result = append(result,s)
+			time.Sleep(time.Duration(parseInt) * time.Second)
+		}
+
+		//var keywords = []string{
+		//	"麦饭石乌龟锅",
+		//	"做豆腐的卤水 家用",
+		//	"烤火炉子烧柴 室内",
+		//}
+		c.JSON(200, gin.H{
+			"message": result,
+		})
+
+
+	})
+
+	r.Run()
+
+
+
 
 }
 
-func analysis(keyWord string) {
+func analysis(keyWord string) string {
+
 
 	escapeKeyWord := url.QueryEscape(keyWord)
 
@@ -62,13 +95,13 @@ func analysis(keyWord string) {
 
 	if err != nil {
 		log.Println(err)
-		return
+		return err.Error()
 	}
 
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 
-	var result string
+	var targetJson string
 
 	for _, lineStr := range strings.Split(string(body), "\n") {
 		lineStr = strings.TrimSpace(lineStr)
@@ -79,16 +112,16 @@ func analysis(keyWord string) {
 		contain := strings.Contains(lineStr, "g_page_config")
 
 		if contain {
-			result = lineStr
+			targetJson = lineStr
 			break
 		}
 	}
 
-	//log.Println(result)
+	//log.Println(targetJson)
 
-	start := strings.Index(result, "=")
+	start := strings.Index(targetJson, "=")
 
-	jsonStr := substr(result, start+2)
+	jsonStr := substr(targetJson, start+2)
 
 	//log.Println(jsonStr)
 
@@ -96,13 +129,18 @@ func analysis(keyWord string) {
 	err = json.Unmarshal([]byte(jsonStr), &item)
 	if err != nil {
 		log.Println(err)
-		return
+		return err.Error()
 	}
 
 	auctions := item.Mods.Itemlist.Data.Auctions
 
 	s := auctions[len(auctions)-1]
-	log.Println(keyWord, "-->", s.ViewSales)
+
+	result :=keyWord+ "-->"+ s.ViewSales
+
+	log.Println(result)
+
+	return result
 }
 
 func substr(input string, start int) string {
