@@ -1,7 +1,6 @@
 package main
 
 import (
-	"awesomeProject/mode"
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -11,14 +10,13 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
+	"taobao/mode"
 	"time"
 )
 
 func main() {
 
-
 	r := gin.Default()
-
 
 	r.GET("/get", func(c *gin.Context) {
 
@@ -35,7 +33,7 @@ func main() {
 
 		for _, keyword := range splits {
 			s := analysis(keyword)
-			result = append(result,s)
+			result = append(result, s)
 			time.Sleep(time.Duration(parseInt) * time.Second)
 		}
 
@@ -48,18 +46,13 @@ func main() {
 			"message": result,
 		})
 
-
 	})
 
 	r.Run("0.0.0.0:8080")
 
-
-
-
 }
 
 func analysis(keyWord string) string {
-
 
 	escapeKeyWord := url.QueryEscape(keyWord)
 
@@ -67,8 +60,7 @@ func analysis(keyWord string) string {
 
 	method := "GET"
 
-	client := &http.Client{
-	}
+	client := &http.Client{}
 	req, err := http.NewRequest(method, urlStr, nil)
 
 	if err != nil {
@@ -136,7 +128,7 @@ func analysis(keyWord string) string {
 
 	s := auctions[len(auctions)-1]
 
-	result :=keyWord+ "-->"+ s.ViewSales
+	result := keyWord + "-->" + s.ViewSales
 
 	log.Println(result)
 

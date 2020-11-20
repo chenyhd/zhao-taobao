@@ -1,4 +1,4 @@
-module awesomeProject
+module taobao
 
 go 1.15
 
