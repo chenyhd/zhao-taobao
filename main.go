@@ -74,7 +74,7 @@ func analysis(keyWord string) string {
 	//req.Header.Add("accept-encoding", " gzip, deflate, br")
 	req.Header.Add("accept-language", " zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja;q=0.6,zh-TW;q=0.5,und;q=0.4")
 	req.Header.Add("cache-control", " max-age=0")
-	req.Header.Add("cookie", " _samesite_flag_=true; cookie2=1b6942071f1cdb2b594cc518ee20b955; t=14de9fffe0bdf37ddb935132b30ba6f5; _tb_token_=ee0f7bbab9378; xlly_s=1; sgcookie=E1003aGpkVfI4EKty%2B2TqS%2BPTddeJhJ%2F0zfDEdGdelDZfHHI18dkC0XDz%2Bckkp47E7btobzPu1hkrKqbUAO92mvMWA%3D%3D; unb=2363180808; uc3=vt3=F8dCufwsB9cyvzFfDCg%3D&nk2=EF8d6D87H2r2Op%2F9GkXxuGU%3D&lg2=VT5L2FSpMGV7TQ%3D%3D&id2=UUtNgwq20OCazQ%3D%3D; csg=8bf9311d; lgc=salah%5Cu795E%5Cu5947%5Cu7684%5Cu5C0F%5Cu5C3E%5Cu5DF4; cookie17=UUtNgwq20OCazQ%3D%3D; dnk=salah%5Cu795E%5Cu5947%5Cu7684%5Cu5C0F%5Cu5C3E%5Cu5DF4; skt=78d44291fa2c9fdc; existShop=MTYwNTcwOTMyMg%3D%3D; uc4=nk4=0%40EoZib8p25U4avRrYYe4ubfW%2FiFRbZPs7DmxR1g%3D%3D&id4=0%40U2l3yMzMraLu1KHygHCFc2Edpp1A; tracknick=salah%5Cu795E%5Cu5947%5Cu7684%5Cu5C0F%5Cu5C3E%5Cu5DF4; _cc_=VFC%2FuZ9ajQ%3D%3D; _l_g_=Ug%3D%3D; sg=%E5%B7%B483; _nk_=salah%5Cu795E%5Cu5947%5Cu7684%5Cu5C0F%5Cu5C3E%5Cu5DF4; cookie1=W5iTmWxTLlBy3DXqu7ZgwFvN7qzUF0D%2FkJF11KCdYi8%3D; enc=HF%2BYFw%2BZATJ87UZkGEfDwzDdlLhqNSt%2BvhH%2B%2F4zE%2F8YK4hjTQCKFvA3H1A65T7bzVET9QsyKlPVer2A5P3gsgw%3D%3D; hng=CN%7Czh-CN%7CCNY%7C156; thw=cn; mt=ci=11_1; uc1=cookie21=WqG3DMC9Fb5mPLIQoVXj&pas=0&cookie16=W5iHLLyFPlMGbLDwA%2BdvAGZqLg%3D%3D&cookie14=Uoe0aDvcrKNsyA%3D%3D&existShop=false&cookie15=VT5L2FSpMGV7TQ%3D%3D; JSESSIONID=016690D74674551D0D9019D88DCC96E3; cna=xabHF8GmW3ACATonI7Wpx0BH; isg=BEBAP_82C7ZDl_bBGYWCbWY0EccSySSTaRul0rrRDNvuNeBfYtn0IxYHSZ31ntxr; tfstk=cMnlB0iDeNXIHDzm53ZSBa1bLA-OwySUsDoj0mSdd0KCqg5cPZ7wFlJ0ZbmdR; l=eBPjtwMeQflVAW3BBOfanurza77OSIRYYuPzaNbMiOCPs2fB51dOWZ75M_Y6C3GVh6bWR3J42eyyBeYBYQAonxv92j-la_kmn; JSESSIONID=7B02F83B372BC589865227AE2F5DF2D9")
+	req.Header.Add("cookie", "thw=cn; UM_distinctid=17534259f4b484-0adba98985f4cb-376b4502-1fa400-17534259f4c96; CNZZDATA1279311025=1149418505-1602894843-https%253A%252F%252Fwww.taobao.com%252F%7C1605265423; t=2c063a1025d7329ac64d4d93c9764e72; xlly_s=1; hng=CN%7Czh-CN%7CCNY%7C156; enc=B1I%2BwKyQvGYBgpjshpEjf%2BGWgJ9mkW9dbPxsDvONTI3pfX82ykZbgUrzrviGTDVyBnptQq4DxezmWjpvVlLRLA%3D%3D; cna=IbAQGHH9fTwCAXtltulpUtCi; sgcookie=E100y4td6oGSvxJfW9Us3YZrc1EJqlcmoiMYkjP%2B%2F7zT2to97UbWPy3Ng%2BROiE%2BIcry1PTNDJEwgjNgSXzIf1d%2B3QA%3D%3D; uc3=lg2=UIHiLt3xD8xYTw%3D%3D&nk2=F5REOtIWfqrLbtM%3D&vt3=F8dCufwqQPuCmvZQPXI%3D&id2=UUphydtzbn68usiH1A%3D%3D; lgc=tb142554118; uc4=id4=0%40U2grEhU66ueQ0vkgnHeYfTNeYYOYGxhS&nk4=0%40FY4PaJKhammAfqdf84pgOGuGLndsoA%3D%3D; tracknick=tb142554118; _cc_=URm48syIZQ%3D%3D; mt=ci=6_1; v=0; _tb_token_=738137117ee3; alitrackid=www.taobao.com; CNZZDATA1277903761=1914218829-1602895946-https%253A%252F%252Fwww.taobao.com%252F%7C1605955990; CNZZDATA1279154029=1345400558-1602894962-https%253A%252F%252Fwww.taobao.com%252F%7C1605960540; _samesite_flag_=true; cookie2=174efd634213a39bb5a47e320e3414cc; tfstk=cEmNB7wb_hKNWiEXylZV5Yth8GkOawDinMy7Sq8XlVJeY9q_asvhMJvCMJyfGPUG.; l=eBLDkugcO-vr7h6dBOfZourza77TjIRAguPzaNbMiOCPOMfB5fzdWZ718QY6CnGVh6xBR3rEQAfvBeYBqgI-nxvOvhLyCKkmn; _m_h5_tk=a23a1e88184e936880d1b4984934765b_1605968747200; _m_h5_tk_enc=c5815499793f45f383b9598f8fca805b; uc1=cookie14=Uoe0aDVuy5%2FNYw%3D%3D; JSESSIONID=67A383299B53B0AF38C89C74D522E41C; lastalitrackid=www.taobao.com; isg=BDw8QZS6T3YVhHswoYvWp2qFDdruNeBfca0MTBa9XycK4d1rPkc772NZxQmZqRi3")
 	req.Header.Add("sec-fetch-dest", " document")
 	req.Header.Add("sec-fetch-mode", " navigate")
 	req.Header.Add("sec-fetch-site", " same-origin")
@@ -109,7 +109,7 @@ func analysis(keyWord string) string {
 		}
 	}
 
-	//log.Println(targetJson)
+	log.Println(targetJson)
 
 	start := strings.Index(targetJson, "=")
 
@@ -120,15 +120,15 @@ func analysis(keyWord string) string {
 	var item mode.Item
 	err = json.Unmarshal([]byte(jsonStr), &item)
 	if err != nil {
-		log.Println(err)
-		return err.Error()
+		log.Println(err,jsonStr)
+		return err.Error() + jsonStr
 	}
 
 	auctions := item.Mods.Itemlist.Data.Auctions
 
 	s := auctions[len(auctions)-1]
 
-	result := keyWord + "-->" + s.ViewSales
+	result := keyWord + "--" + s.ViewSales
 
 	log.Println(result)
 
