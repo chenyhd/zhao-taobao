@@ -43,9 +43,13 @@ func main() {
 		//	"做豆腐的卤水 家用",
 		//	"烤火炉子烧柴 室内",
 		//}
-		c.JSON(200, gin.H{
-			"message": result,
-		})
+
+		output := ""
+		for _, s := range result {
+			output += s + "\n"
+		}
+
+		c.Data(200, "text/plain; charset=utf-8", []byte(output))
 
 	})
 
@@ -98,8 +102,6 @@ func analysis(keyWord string, header http.Header) string {
 			break
 		}
 	}
-
-	log.Println(targetJson)
 
 	start := strings.Index(targetJson, "=")
 
