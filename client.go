@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"strconv"
 	"strings"
@@ -62,6 +63,8 @@ func main() {
 		log.Print("正在处理第", i, "个, 值为[", s, "]")
 
 		s = strings.ReplaceAll(s, "\r", "")
+
+		s := url.QueryEscape(s)
 
 		urlStr := *domain + "/get?keywords=" + s + "&sleepSecond=" + *sleep
 
