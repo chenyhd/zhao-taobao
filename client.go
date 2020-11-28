@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -42,7 +43,20 @@ func main() {
 
 	log.Println(header)
 
-	var output []byte
+	b, _ := strconv.ParseBool(*outputFileTimestamp)
+
+	if b {
+		*outputFile += strconv.FormatInt(time.Now().Unix(), 10)
+	}
+
+	log.Println("Output file ", *outputFile)
+
+	f, err := os.OpenFile(*outputFile,
+		os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println(err)
+	}
+	defer f.Close()
 
 	for i, s := range split {
 		log.Print("正在处理第", i, "个, 值为[", s, "]")
@@ -75,19 +89,10 @@ func main() {
 		defer res.Body.Close()
 		body, err := ioutil.ReadAll(res.Body)
 
-		log.Println(body)
-
-		output = append(output[:], body...)
-
+		if _, err := f.WriteString(string(body)); err != nil {
+			log.Println(err)
+		}
 	}
-
-	b, _ := strconv.ParseBool(*outputFileTimestamp)
-
-	if b {
-		*outputFile += strconv.FormatInt(time.Now().Unix(), 10)
-	}
-
-	_ = ioutil.WriteFile(*outputFile, output, 0644)
 
 }
 
