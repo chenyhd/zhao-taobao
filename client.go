@@ -18,7 +18,7 @@ func main() {
 	dataFile := flag.String("data", "./data.txt", "数据文件路径")
 	outputFile := flag.String("output", "./output.txt", "输出文件路径")
 	outputFileTimestamp := flag.String("timestamp", "true", "输出文件路径是否追加时间戳")
-	sleep := flag.String("sleep", "2", "每条间隔时间")
+	sleep := flag.String("sleep", "5", "每条间隔时间")
 	flag.Parse()
 	data, err := ioutil.ReadFile(*dataFile)
 	check(err)
@@ -29,6 +29,13 @@ func main() {
 
 	header := http.Header{}
 	for _, b := range strings.Split(string(headerText), "\n") {
+
+		b = strings.ReplaceAll(b, "\r", "")
+
+		if b == "" {
+			continue
+		}
+
 		i := strings.Split(b, ": ")
 		header.Add(i[0], i[1])
 	}
@@ -39,7 +46,8 @@ func main() {
 
 	for i, s := range split {
 		log.Print("正在处理第", i, "个, 值为[", s, "]")
-		log.Print(string(headerText))
+
+		s = strings.ReplaceAll(s, "\r", "")
 
 		urlStr := *domain + "/get?keywords=" + s + "&sleepSecond=" + *sleep
 
